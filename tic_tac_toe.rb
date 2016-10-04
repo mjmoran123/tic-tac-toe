@@ -1,10 +1,11 @@
 class Game
-	attr_accessor :board, :turn, :winner
+	attr_accessor :board, :turn, :winner, :draw
 
 	def initialize
 		@board = "000000000"
 		@turn = 0
 		@winner = 0
+		@draw = 0
 	end
 
 	def pretty_print
@@ -27,6 +28,20 @@ class Game
 		return false
 	end
 
+	def draw?
+		product = 1
+		self.board.chars.each do |char|
+			product *= char.to_i
+		end
+		if !winner? && product != 0
+			@draw = 1
+			puts "it's a DRAW!"
+			return true
+		else
+			return false
+		end
+	end
+
 	def move(location)
 		if self.winner == 0 && self.board[location] == "0"
 			if self.turn % 2 == 0
@@ -39,6 +54,7 @@ class Game
 			puts "nope!"
 		end
 		self.winner?
+		self.draw?
 		self.pretty_print
 	end
 
@@ -47,7 +63,7 @@ end
 g = Game.new
 g.pretty_print
 
-while g.winner == 0
+while g.winner == 0 && g.draw == 0
 	puts "make your move"
 	move = gets.chomp
 	g.move(move.to_i)
