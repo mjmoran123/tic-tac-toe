@@ -28,7 +28,6 @@ class Game
 	end
 
 	def move(location)
-		self.winner?
 		if self.winner == 0 && self.board[location] == "0"
 			if self.turn % 2 == 0
 				self.board[location] = "1"
@@ -39,6 +38,7 @@ class Game
 		else
 			puts "nope!"
 		end
+		self.winner?
 		self.pretty_print
 	end
 
@@ -46,6 +46,12 @@ end
 
 g = Game.new
 g.pretty_print
+
+while g.winner == 0
+	puts "make your move"
+	move = gets.chomp
+	g.move(move.to_i)
+end
 # g.move(0)
 # g.move(1)
 # g.move(4)
