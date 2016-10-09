@@ -58,6 +58,27 @@ class Game
 		self.pretty_print
 	end
 
+	def robo_move(location)
+		if self.winner == 0 && self.board[location] == "0"
+			self.board[location] = "1"
+			self.winner?
+			self.draw?
+			if self.winner == 0 && self.draw == 0
+				turn_flag = false
+				while !turn_flag
+					robo_location = rand(0..8)
+					if board[robo_location] == "0"
+						board[robo_location] = "2"
+						turn_flag = true
+					end
+				end
+			end
+		end
+		self.winner?
+		self.draw?
+		self.pretty_print
+	end
+
 end
 
 g = Game.new
@@ -66,7 +87,7 @@ g.pretty_print
 while g.winner == 0 && g.draw == 0
 	puts "make your move"
 	move = gets.chomp
-	g.move(move.to_i)
+	g.robo_move(move.to_i)
 end
 # g.move(0)
 # g.move(1)
