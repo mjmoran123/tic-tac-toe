@@ -270,13 +270,13 @@ class Game
 	end
 
 	def get_opposite_corner
-		if self.board[0] == "2"
+		if self.board[0] == "2" && self.board[8] == "0"
 			return 8
-		elsif self.board[2] == "2"
+		elsif self.board[2] == "2" && self.board[6] == "0"
 			return 6
-		elsif self.board[6] == "2"
+		elsif self.board[6] == "2" && self.board[2] == "0"
 			return 2
-		elsif self.board[8] == "2"
+		elsif self.board[8] == "2" && self.board[0] == "0"
 			return 0
 		else
 			return -1
@@ -357,13 +357,13 @@ class Game
 						self.board[location] = "1"
 						self.turn += 1
 						turn_flag = true
-					else
-						robo_location = rand(0..8)
-						if board[robo_location] == "0"
-							board[robo_location] = "1"
-							self.turn += 1
-							turn_flag = true
-						end
+					# else
+					# 	robo_location = rand(0..8)
+					# 	if board[robo_location] == "0"
+					# 		board[robo_location] = "1"
+					# 		self.turn += 1
+					# 		turn_flag = true
+					# 	end
 					end
 				end
 			else
