@@ -261,6 +261,14 @@ class Game
 
 	end
 
+	def get_center
+		if self.board[4] == "0"
+			return 4
+		else
+			return -1
+		end
+	end
+
 	def play_game
 		while !self.winner? && !self.draw?
 			self.pretty_print
@@ -283,9 +291,13 @@ class Game
 						self.board[location] = "1"
 						self.turn += 1
 						turn_flag = true
-					elsif self.fork_block_fork_3_4(2) > -1 #checks for fork
+					elsif self.fork_block_fork_3_4(2) > -1 #blocks opponent fork
 						location = self.fork_block_fork_3_4(2)
 						self.board[location] = "1"
+						self.turn += 1
+						turn_flag = true
+					elsif self.get_center > -1 #checks for empty center
+						self.board[4] = "1"
 						self.turn += 1
 						turn_flag = true
 					else
