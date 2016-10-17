@@ -84,24 +84,31 @@ class Game
 	end
 
 	# check if a win is possible, priority 1
-	def win_1
-		if self.board[0] == "0" && (self.board[1].to_i * self.board[2].to_i == 1 || self.board[3].to_i * self.board[6].to_i == 1 || self.board[4].to_i * self.board[8].to_i == 1 )
+	def win_block_1_2(player)
+
+		if player == 1
+			product = 1
+		else
+			product = 4
+		end
+
+		if self.board[0] == "0" && (self.board[1].to_i * self.board[2].to_i == product || self.board[3].to_i * self.board[6].to_i == product || self.board[4].to_i * self.board[8].to_i == product )
 			return 0
-		elsif self.board[1] == "0" && (self.board[4].to_i * self.board[7].to_i == 1 || self.board[0].to_i * self.board[2].to_i == 1)
+		elsif self.board[1] == "0" && (self.board[4].to_i * self.board[7].to_i == product || self.board[0].to_i * self.board[2].to_i == product)
 			return 1
-		elsif self.board[2] == "0" && (self.board[1].to_i * self.board[0].to_i == 1 || self.board[5].to_i * self.board[8].to_i == 1 || self.board[4].to_i * self.board[6].to_i == 1)
+		elsif self.board[2] == "0" && (self.board[1].to_i * self.board[0].to_i == product || self.board[5].to_i * self.board[8].to_i == product || self.board[4].to_i * self.board[6].to_i == product)
 			return 2
-		elsif self.board[3] == "0" && (self.board[4].to_i * self.board[5].to_i == 1 || self.board[0].to_i * self.board[6].to_i == 1)
+		elsif self.board[3] == "0" && (self.board[4].to_i * self.board[5].to_i == product || self.board[0].to_i * self.board[6].to_i == product)
 			return 3
-		elsif self.board[4] == "0" && (self.board[0].to_i * self.board[8].to_i == 1 || self.board[2].to_i * self.board[6].to_i == 1 || self.board[1].to_i * self.board[7].to_i == 1 || self.board[3].to_i * self.board[5].to_i == 1)
+		elsif self.board[4] == "0" && (self.board[0].to_i * self.board[8].to_i == product || self.board[2].to_i * self.board[6].to_i == product || self.board[1].to_i * self.board[7].to_i == product || self.board[3].to_i * self.board[5].to_i == product)
 			return 4
-		elsif self.board[5] == "0" && (self.board[4].to_i * self.board[3].to_i == 1 || self.board[2].to_i * self.board[8].to_i == 1)
+		elsif self.board[5] == "0" && (self.board[4].to_i * self.board[3].to_i == product || self.board[2].to_i * self.board[8].to_i == product)
 			return 5
-		elsif self.board[6] == "0" && (self.board[3].to_i * self.board[0].to_i == 1 || self.board[4].to_i * self.board[2].to_i == 1 || self.board[7].to_i * self.board[8].to_i == 1)
+		elsif self.board[6] == "0" && (self.board[3].to_i * self.board[0].to_i == product || self.board[4].to_i * self.board[2].to_i == product || self.board[7].to_i * self.board[8].to_i == product)
 			return 6
-		elsif self.board[7] == "0" && (self.board[4].to_i * self.board[1].to_i == 1 || self.board[6].to_i * self.board[8].to_i == 1)
+		elsif self.board[7] == "0" && (self.board[4].to_i * self.board[1].to_i == product || self.board[6].to_i * self.board[8].to_i == product)
 			return 7
-		elsif self.board[8] == "0" && (self.board[4].to_i * self.board[0].to_i == 1 || self.board[5].to_i * self.board[2].to_i == 1 || self.board[7].to_i * self.board[6].to_i == 1)
+		elsif self.board[8] == "0" && (self.board[4].to_i * self.board[0].to_i == product || self.board[5].to_i * self.board[2].to_i == product || self.board[7].to_i * self.board[6].to_i == product)
 			return 8
 		else
 			return -1
@@ -115,10 +122,14 @@ class Game
 			if self.turn % 2 == 0
 				turn_flag = false
 				while !turn_flag
-					location = self.win_1
-					if location > -1
+					location = self.win_block_1_2(1)
+					if location > -1 #checks if possible to win
 						self.board[location] = "1"
-						p location
+						self.turn += 1
+						turn_flag = true
+					elsif self.win_block_1_2(2) > -1 #blocks opponent win
+						location = self.win_block_1_2(2)
+						self.board[location] = "1"
 						self.turn += 1
 						turn_flag = true
 					else
