@@ -283,6 +283,20 @@ class Game
 		end	
 	end
 
+	def get_corner
+		if self.board[0] == "0"
+			return 0
+		elsif self.board[2] == "0"
+			return 2
+		elsif self.board[6] == "0"
+			return 6
+		elsif self.board[8] == "0"
+			return 8
+		else
+			return -1
+		end	
+	end
+
 	def play_game
 		while !self.winner? && !self.draw?
 			self.pretty_print
@@ -316,6 +330,11 @@ class Game
 						turn_flag = true
 					elsif self.get_opposite_corner > -1 #gets opp corner if opp has corner
 						location = self.get_opposite_corner
+						self.board[location] = "1"
+						self.turn += 1
+						turn_flag = true
+					elsif self.get_corner > -1 #gets a corner
+						location = self.get_corner
 						self.board[location] = "1"
 						self.turn += 1
 						turn_flag = true
