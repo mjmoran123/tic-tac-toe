@@ -269,6 +269,48 @@ class Game
 		end
 	end
 
+	def get_opposite_corner
+		if self.board[0] == "2" && self.board[8] == "0"
+			return 8
+		elsif self.board[2] == "2" && self.board[6] == "0"
+			return 6
+		elsif self.board[6] == "2" && self.board[2] == "0"
+			return 2
+		elsif self.board[8] == "2" && self.board[0] == "0"
+			return 0
+		else
+			return -1
+		end	
+	end
+
+	def get_corner
+		if self.board[0] == "0"
+			return 0
+		elsif self.board[2] == "0"
+			return 2
+		elsif self.board[6] == "0"
+			return 6
+		elsif self.board[8] == "0"
+			return 8
+		else
+			return -1
+		end	
+	end
+
+	def get_side
+		if self.board[1] == "0"
+			return 1
+		elsif self.board[3] == "0"
+			return 3
+		elsif self.board[5] == "0"
+			return 5
+		elsif self.board[7] == "0"
+			return 7
+		else
+			return -1
+		end	
+	end
+
 	def play_game
 		while !self.winner? && !self.draw?
 			self.pretty_print
@@ -300,13 +342,28 @@ class Game
 						self.board[4] = "1"
 						self.turn += 1
 						turn_flag = true
-					else
-						robo_location = rand(0..8)
-						if board[robo_location] == "0"
-							board[robo_location] = "1"
-							self.turn += 1
-							turn_flag = true
-						end
+					elsif self.get_opposite_corner > -1 #gets opp corner if opp has corner
+						location = self.get_opposite_corner
+						self.board[location] = "1"
+						self.turn += 1
+						turn_flag = true
+					elsif self.get_corner > -1 #gets a corner
+						location = self.get_corner
+						self.board[location] = "1"
+						self.turn += 1
+						turn_flag = true
+					elsif self.get_side > -1 #gets a side
+						location = self.get_side
+						self.board[location] = "1"
+						self.turn += 1
+						turn_flag = true
+					# else
+					# 	robo_location = rand(0..8)
+					# 	if board[robo_location] == "0"
+					# 		board[robo_location] = "1"
+					# 		self.turn += 1
+					# 		turn_flag = true
+					# 	end
 					end
 				end
 			else
