@@ -297,6 +297,20 @@ class Game
 		end	
 	end
 
+	def get_side
+		if self.board[1] == "0"
+			return 1
+		elsif self.board[3] == "0"
+			return 3
+		elsif self.board[5] == "0"
+			return 5
+		elsif self.board[7] == "0"
+			return 7
+		else
+			return -1
+		end	
+	end
+
 	def play_game
 		while !self.winner? && !self.draw?
 			self.pretty_print
@@ -335,6 +349,11 @@ class Game
 						turn_flag = true
 					elsif self.get_corner > -1 #gets a corner
 						location = self.get_corner
+						self.board[location] = "1"
+						self.turn += 1
+						turn_flag = true
+					elsif self.get_side > -1 #gets a side
+						location = self.get_side
 						self.board[location] = "1"
 						self.turn += 1
 						turn_flag = true
