@@ -115,16 +115,22 @@ class Game
 		end
 	end
 
-	def fork_3
+	def fork_block_fork_3_4(player)
+		if player == 1
+			sum = 1
+		else
+			sum = 2
+		end
+
 		if self.board[0] == "0"
 			fork_count = 0
-			if self.board[1].to_i * self.board[2].to_i == 0 && self.board[1].to_i + self.board[2].to_i == 1
+			if self.board[1].to_i * self.board[2].to_i == 0 && self.board[1].to_i + self.board[2].to_i == sum
 				fork_count += 1
 			end
-			if self.board[4].to_i * self.board[8].to_i == 0 && self.board[4].to_i + self.board[8].to_i == 1
+			if self.board[4].to_i * self.board[8].to_i == 0 && self.board[4].to_i + self.board[8].to_i == sum
 				fork_count += 1
 			end
-			if self.board[3].to_i * self.board[6].to_i == 0 && self.board[3].to_i + self.board[6].to_i == 1
+			if self.board[3].to_i * self.board[6].to_i == 0 && self.board[3].to_i + self.board[6].to_i == sum
 				fork_count += 1
 			end
 			if fork_count > 1
@@ -134,10 +140,10 @@ class Game
 
 		if self.board[1] == "0"
 			fork_count = 0
-			if self.board[0].to_i * self.board[2].to_i == 0 && self.board[0].to_i + self.board[2].to_i == 1
+			if self.board[0].to_i * self.board[2].to_i == 0 && self.board[0].to_i + self.board[2].to_i == sum
 				fork_count += 1
 			end
-			if self.board[4].to_i * self.board[7].to_i == 0 && self.board[4].to_i + self.board[7].to_i == 1
+			if self.board[4].to_i * self.board[7].to_i == 0 && self.board[4].to_i + self.board[7].to_i == sum
 				fork_count += 1
 			end
 			if fork_count > 1
@@ -147,13 +153,13 @@ class Game
 
 		if self.board[2] == "0"
 			fork_count = 0
-			if self.board[1].to_i * self.board[0].to_i == 0 && self.board[1].to_i + self.board[0].to_i == 1
+			if self.board[1].to_i * self.board[0].to_i == 0 && self.board[1].to_i + self.board[0].to_i == sum
 				fork_count += 1
 			end
-			if self.board[4].to_i * self.board[8].to_i == 0 && self.board[4].to_i + self.board[6].to_i == 1
+			if self.board[4].to_i * self.board[8].to_i == 0 && self.board[4].to_i + self.board[6].to_i == sum
 				fork_count += 1
 			end
-			if self.board[5].to_i * self.board[8].to_i == 0 && self.board[5].to_i + self.board[8].to_i == 1
+			if self.board[5].to_i * self.board[8].to_i == 0 && self.board[5].to_i + self.board[8].to_i == sum
 				fork_count += 1
 			end
 			if fork_count > 1
@@ -163,10 +169,10 @@ class Game
 
 		if self.board[3] == "0"
 			fork_count = 0
-			if self.board[0].to_i * self.board[6].to_i == 0 && self.board[0].to_i + self.board[6].to_i == 1
+			if self.board[0].to_i * self.board[6].to_i == 0 && self.board[0].to_i + self.board[6].to_i == sum
 				fork_count += 1
 			end
-			if self.board[4].to_i * self.board[5].to_i == 0 && self.board[4].to_i + self.board[5].to_i == 1
+			if self.board[4].to_i * self.board[5].to_i == 0 && self.board[4].to_i + self.board[5].to_i == sum
 				fork_count += 1
 			end
 			if fork_count > 1
@@ -176,16 +182,16 @@ class Game
 
 		if self.board[4] == "0"
 			fork_count = 0
-			if self.board[0].to_i * self.board[8].to_i == 0 && self.board[0].to_i + self.board[8].to_i == 1
+			if self.board[0].to_i * self.board[8].to_i == 0 && self.board[0].to_i + self.board[8].to_i == sum
 				fork_count += 1
 			end
-			if self.board[1].to_i * self.board[7].to_i == 0 && self.board[1].to_i + self.board[7].to_i == 1
+			if self.board[1].to_i * self.board[7].to_i == 0 && self.board[1].to_i + self.board[7].to_i == sum
 				fork_count += 1
 			end
-			if self.board[2].to_i * self.board[6].to_i == 0 && self.board[2].to_i + self.board[6].to_i == 1
+			if self.board[2].to_i * self.board[6].to_i == 0 && self.board[2].to_i + self.board[6].to_i == sum
 				fork_count += 1
 			end
-			if self.board[3].to_i * self.board[5].to_i == 0 && self.board[3].to_i + self.board[5].to_i == 1
+			if self.board[3].to_i * self.board[5].to_i == 0 && self.board[3].to_i + self.board[5].to_i == sum
 				fork_count += 1
 			end
 			if fork_count > 1
@@ -195,10 +201,10 @@ class Game
 
 		if self.board[5] == "0"
 			fork_count = 0
-			if self.board[3].to_i * self.board[4].to_i == 0 && self.board[3].to_i + self.board[4].to_i == 1
+			if self.board[3].to_i * self.board[4].to_i == 0 && self.board[3].to_i + self.board[4].to_i == sum
 				fork_count += 1
 			end
-			if self.board[2].to_i * self.board[8].to_i == 0 && self.board[2].to_i + self.board[8].to_i == 1
+			if self.board[2].to_i * self.board[8].to_i == 0 && self.board[2].to_i + self.board[8].to_i == sum
 				fork_count += 1
 			end
 			if fork_count > 1
@@ -208,13 +214,13 @@ class Game
 
 		if self.board[6] == "0"
 			fork_count = 0
-			if self.board[3].to_i * self.board[0].to_i == 0 && self.board[3].to_i + self.board[0].to_i == 1
+			if self.board[3].to_i * self.board[0].to_i == 0 && self.board[3].to_i + self.board[0].to_i == sum
 				fork_count += 1
 			end
-			if self.board[4].to_i * self.board[2].to_i == 0 && self.board[4].to_i + self.board[2].to_i == 1
+			if self.board[4].to_i * self.board[2].to_i == 0 && self.board[4].to_i + self.board[2].to_i == sum
 				fork_count += 1
 			end
-			if self.board[7].to_i * self.board[8].to_i == 0 && self.board[7].to_i + self.board[8].to_i == 1
+			if self.board[7].to_i * self.board[8].to_i == 0 && self.board[7].to_i + self.board[8].to_i == sum
 				fork_count += 1
 			end
 			if fork_count > 1
@@ -224,10 +230,10 @@ class Game
 
 		if self.board[7] == "0"
 			fork_count = 0
-			if self.board[6].to_i * self.board[8].to_i == 0 && self.board[6].to_i + self.board[8].to_i == 1
+			if self.board[6].to_i * self.board[8].to_i == 0 && self.board[6].to_i + self.board[8].to_i == sum
 				fork_count += 1
 			end
-			if self.board[4].to_i * self.board[1].to_i == 0 && self.board[4].to_i + self.board[1].to_i == 1
+			if self.board[4].to_i * self.board[1].to_i == 0 && self.board[4].to_i + self.board[1].to_i == sum
 				fork_count += 1
 			end
 			if fork_count > 1
@@ -237,13 +243,13 @@ class Game
 
 		if self.board[8] == "0"
 			fork_count = 0
-			if self.board[6].to_i * self.board[7].to_i == 0 && self.board[6].to_i + self.board[7].to_i == 1
+			if self.board[6].to_i * self.board[7].to_i == 0 && self.board[6].to_i + self.board[7].to_i == sum
 				fork_count += 1
 			end
-			if self.board[4].to_i * self.board[0].to_i == 0 && self.board[4].to_i + self.board[0].to_i == 1
+			if self.board[4].to_i * self.board[0].to_i == 0 && self.board[4].to_i + self.board[0].to_i == sum
 				fork_count += 1
 			end
-			if self.board[5].to_i * self.board[2].to_i == 0 && self.board[5].to_i + self.board[2].to_i == 1
+			if self.board[5].to_i * self.board[2].to_i == 0 && self.board[5].to_i + self.board[2].to_i == sum
 				fork_count += 1
 			end
 			if fork_count > 1
@@ -272,8 +278,13 @@ class Game
 						self.board[location] = "1"
 						self.turn += 1
 						turn_flag = true
-					elsif self.fork_3 > -1 #checks for fork
-						location = self.fork_3
+					elsif self.fork_block_fork_3_4(1) > -1 #checks for fork
+						location = self.fork_block_fork_3_4(1)
+						self.board[location] = "1"
+						self.turn += 1
+						turn_flag = true
+					elsif self.fork_block_fork_3_4(2) > -1 #checks for fork
+						location = self.fork_block_fork_3_4(2)
 						self.board[location] = "1"
 						self.turn += 1
 						turn_flag = true
